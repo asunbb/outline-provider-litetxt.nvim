@@ -85,6 +85,21 @@ local function get_segment_symbols(bufnr, node, depth, max_depth)
         end_row = end_row - 1
       end
 
+      -- 当要提取子级 segment 时，将父级 range 收缩到第一个子 segment 之前，
+      -- 避免父子的 range 重叠导致 outline 窗口中父子条目同时高亮
+      -- litetxt 中 content 始终为单行，收缩后 range 仅覆盖父级自身内容行
+      if depth < max_depth then
+        for c in child:iter_children() do
+          if c:type() == 'segment' then
+            local child_start_row = c:start()
+            if child_start_row > start_row and end_row >= child_start_row then
+              end_row = child_start_row - 1
+            end
+            break
+          end
+        end
+      end
+
       -- 构建符号条目，字段遵循 outline.nvim 的 ProviderSymbol 规范
       local entry = {
         -- LSP SymbolKind: 5=Class (第一级), 7=Property (第二级)，不同 kind 显示不同图标
