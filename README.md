@@ -1,5 +1,7 @@
 # outline-provider-litetxt.nvim
 
+[中文简体](README.zh-CN.md)
+
 A custom provider for [outline.nvim](https://github.com/hedyhli/outline.nvim) that provides outline symbol extraction for txt (text) files.
 
 Based on the CST of the [tree-sitter-txt](https://github.com/asunbb/tree-sitter-txt) parser, it extracts the first two levels of indented paragraphs as outline entries.

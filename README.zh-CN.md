@@ -1,5 +1,7 @@
 # outline-provider-litetxt.nvim
 
+[English](README.md)
+
 [outline.nvim](https://github.com/hedyhli/outline.nvim) 的自定义 provider，为 txt(text) 文件提供 outline 符号提取。
 
 基于 [tree-sitter-txt](https://github.com/asunbb/tree-sitter-txt) 解析器的 CST，提取前两级缩进段落作为 outline 条目。
